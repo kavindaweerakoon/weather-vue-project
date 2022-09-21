@@ -5,7 +5,7 @@
         type="text"
         v-model="searchQuery"
         @input="getSearchResults"
-        placeholder="Search for a city or state/province"
+        placeholder="Search for a city or town"
         class="py-2 px-1 w-full bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow=[0px_1px_0_0_#004E71]"
       />
       <ul
@@ -36,7 +36,7 @@ import axios from "axios";
 const openweathermapAPIKey = "9ed557cdf7c9ae9ddaf9a3ec13532116";
 const searchQuery = ref("");
 const queryTimeout = ref(null);
-let openweathermapSearchResults = ref(null);
+const openweathermapSearchResults = ref(null);
 
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
