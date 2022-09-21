@@ -1,5 +1,7 @@
 <template>
-  <Teleport to="body">
+  <Teleport to="body"> 
+    <!-- teleport ensures that whatever styling that is applied to the modal does not get interfered
+    with components higher up within the hierarchy. -->
     <Transition name="modal-outer">
       <div
         v-show="modalActive"
