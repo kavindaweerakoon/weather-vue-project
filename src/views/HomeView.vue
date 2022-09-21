@@ -15,7 +15,7 @@
         <p v-if="searchError">
           Sorry, something went wrong. Please try again later.
         </p>
-        <p v-if="!serverError && openweathermapSearchResults.length === 0">
+        <p v-if="!searchError && openweathermapSearchResults.length === 0">
           No results found.
         </p>
         <template v-else>
@@ -23,6 +23,7 @@
             v-for="searchResult in openweathermapSearchResults"
             :key="searchResult.id"
             class="py-2 cursor-pointer"
+            @click="previewCity(searchResult)"
           >
             {{
               searchResult.name +
@@ -39,6 +40,21 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const previewCity = (searchResult) => {
+  console.log(searchResult);
+  router.push({
+    name: 'cityView',
+    params: {state: searchResult.state, city: searchResult.name},
+    query: {
+      lat: searchResult.lat,
+      lon: searchResult.lon,
+      preview: true
+    }
+  })
+};
 
 const openweathermapAPIKey = "9ed557cdf7c9ae9ddaf9a3ec13532116";
 const searchQuery = ref("");
