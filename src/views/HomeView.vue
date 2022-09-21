@@ -36,7 +36,7 @@ import axios from "axios";
 const openweathermapAPIKey = "9ed557cdf7c9ae9ddaf9a3ec13532116";
 const searchQuery = ref("");
 const queryTimeout = ref(null);
-const openweathermapSearchResults = ref(null);
+let openweathermapSearchResults = ref(null);
 
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
