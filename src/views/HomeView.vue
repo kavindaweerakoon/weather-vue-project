@@ -37,9 +37,9 @@
     </div>
     <div class="flex flex-col gap-4">
       <Suspense>
-        <CityList/>
+        <CityList />
         <template #fallback>
-          <p>Loading...</p> 
+          <CityCardSkeleton />
         </template>
       </Suspense>
     </div>
@@ -50,19 +50,20 @@ import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import CityList from "../components/CityList.vue";
+import CityCardSkeleton from "../components/CityCardSkeleton.vue";
 
 const router = useRouter();
 const previewCity = (searchResult) => {
   console.log(searchResult);
   router.push({
-    name: 'cityView',
-    params: {state: searchResult.state, city: searchResult.name},
+    name: "cityView",
+    params: { state: searchResult.state, city: searchResult.name },
     query: {
       lat: searchResult.lat,
       lon: searchResult.lon,
-      preview: true
-    }
-  })
+      preview: true,
+    },
+  });
 };
 
 const openweathermapAPIKey = "9ed557cdf7c9ae9ddaf9a3ec13532116";

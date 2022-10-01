@@ -138,6 +138,7 @@ const getWeatherData = async () => {
       const utc = hour.dt * 1000 + localOffset;
       hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
     });
+    await new Promise((res) => setTimeout(res, 500));
     return weatherData.data;
   } catch (err) {
     console.log(err);
@@ -152,7 +153,7 @@ const removeCity = () => {
   const updatedCities = cities.filter((city) => city.id !== route.query.id);
   localStorage.setItem("savedCities", JSON.stringify(updatedCities));
   router.push({
-    name: "home"
-  })
+    name: "home",
+  });
 };
 </script>
